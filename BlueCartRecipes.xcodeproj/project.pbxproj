@@ -14,6 +14,8 @@
 		493944941FE093CE00B38A9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493944921FE093CE00B38A9E /* LaunchScreen.storyboard */; };
 		4939449F1FE093CE00B38A9E /* BlueCartRecipesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4939449E1FE093CE00B38A9E /* BlueCartRecipesTests.swift */; };
 		493944AA1FE093CE00B38A9E /* BlueCartRecipesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944A91FE093CE00B38A9E /* BlueCartRecipesUITests.swift */; };
+		493944B81FE0961700B38A9E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944B71FE0961700B38A9E /* APIManager.swift */; };
+		493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944B91FE097AB00B38A9E /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		493944A51FE093CE00B38A9E /* BlueCartRecipesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueCartRecipesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		493944A91FE093CE00B38A9E /* BlueCartRecipesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCartRecipesUITests.swift; sourceTree = "<group>"; };
 		493944AB1FE093CE00B38A9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		493944B71FE0961700B38A9E /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		493944B91FE097AB00B38A9E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				493944901FE093CE00B38A9E /* Assets.xcassets */,
 				493944921FE093CE00B38A9E /* LaunchScreen.storyboard */,
 				493944951FE093CE00B38A9E /* Info.plist */,
+				493944B71FE0961700B38A9E /* APIManager.swift */,
+				493944B91FE097AB00B38A9E /* Recipe.swift */,
 			);
 			path = BlueCartRecipes;
 			sourceTree = "<group>";
@@ -193,7 +199,7 @@
 				TargetAttributes = {
 					493944851FE093CE00B38A9E = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					493944991FE093CE00B38A9E = {
 						CreatedOnToolsVersion = 9.2;
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493944B81FE0961700B38A9E /* APIManager.swift in Sources */,
 				4939448C1FE093CE00B38A9E /* ViewController.swift in Sources */,
 				4939448A1FE093CE00B38A9E /* AppDelegate.swift in Sources */,
+				493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,11 +434,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BlueCartRecipes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BlueCartRecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -440,11 +450,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BlueCartRecipes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BlueCartRecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
