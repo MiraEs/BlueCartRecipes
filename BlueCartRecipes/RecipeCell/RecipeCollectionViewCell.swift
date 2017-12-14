@@ -1,22 +1,20 @@
 //
-//  RecipeTableViewCell.swift
+//  RecipeCollectionViewCell.swift
 //  BlueCartRecipes
 //
-//  Created by Mira Estil on 12/13/17.
+//  Created by Mira Estil on 12/14/17.
 //  Copyright © 2017 Mira Estil. All rights reserved.
 //
 
 import UIKit
 
-class RecipeTableViewCell: UITableViewCell {
+class RecipeCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var recipeLabel: UILabel!
+    @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     
-
-    
     func data(_ title: String, _ imageUrl: String) {
-        recipeLabel.text = title
+        self.recipeTitle.text = title
         downloadImage(imageUrl)
     }
     
@@ -32,5 +30,6 @@ class RecipeTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
+
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zHj-hy-gWP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Recipe View Controller-->
+        <scene sceneID="kgB-O0-GUR">
+            <objects>
+                <viewController id="zHj-hy-gWP" customClass="SearchRecipeViewController" customModule="BlueCartRecipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aqD-Bm-b7l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hCO-1G-MS5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AvZ-Ek-07Z">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewLayout key="collectionViewLayout" id="iZf-6U-TO2"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipeCollectionViewCell" id="9ZO-a6-jZk" customClass="RecipeCollectionViewCell" customModule="BlueCartRecipes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="zHj-hy-gWP" id="sUd-qT-dw7"/>
+                                    <outlet property="delegate" destination="zHj-hy-gWP" id="StA-p1-BVZ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JUL-kF-n9s" firstAttribute="bottom" secondItem="AvZ-Ek-07Z" secondAttribute="bottom" id="RbC-Vc-IpH"/>
+                            <constraint firstItem="AvZ-Ek-07Z" firstAttribute="top" secondItem="hCO-1G-MS5" secondAttribute="bottom" id="Rvy-MS-T8N"/>
+                            <constraint firstItem="hCO-1G-MS5" firstAttribute="leading" secondItem="JUL-kF-n9s" secondAttribute="leading" id="YlP-HH-eWU"/>
+                            <constraint firstItem="JUL-kF-n9s" firstAttribute="top" secondItem="hCO-1G-MS5" secondAttribute="top" constant="20" id="bG9-Tg-d8k"/>
+                            <constraint firstItem="JUL-kF-n9s" firstAttribute="trailing" secondItem="hCO-1G-MS5" secondAttribute="trailing" id="faz-eY-BTk"/>
+                            <constraint firstItem="AvZ-Ek-07Z" firstAttribute="leading" secondItem="JUL-kF-n9s" secondAttribute="leading" id="p28-1Y-Mg6"/>
+                            <constraint firstItem="JUL-kF-n9s" firstAttribute="trailing" secondItem="AvZ-Ek-07Z" secondAttribute="trailing" id="qdn-GA-jRt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JUL-kF-n9s"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="AvZ-Ek-07Z" id="WAL-sy-bEM"/>
+                        <outlet property="searchBar" destination="hCO-1G-MS5" id="flm-dd-0Ok"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="azy-Di-R6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1383" y="24"/>
+        </scene>
+    </scenes>
+</document>
