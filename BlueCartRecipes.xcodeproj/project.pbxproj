@@ -16,6 +16,8 @@
 		493944AA1FE093CE00B38A9E /* BlueCartRecipesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944A91FE093CE00B38A9E /* BlueCartRecipesUITests.swift */; };
 		493944B81FE0961700B38A9E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944B71FE0961700B38A9E /* APIManager.swift */; };
 		493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944B91FE097AB00B38A9E /* Recipe.swift */; };
+		49DE33A01FE2386200EC0ECC /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE339E1FE2386200EC0ECC /* RecipeTableViewCell.swift */; };
+		49DE33A11FE2386200EC0ECC /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DE339F1FE2386200EC0ECC /* RecipeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		493944AB1FE093CE00B38A9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		493944B71FE0961700B38A9E /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		493944B91FE097AB00B38A9E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		49DE339E1FE2386200EC0ECC /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		49DE339F1FE2386200EC0ECC /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				493944891FE093CE00B38A9E /* AppDelegate.swift */,
+				49DE339E1FE2386200EC0ECC /* RecipeTableViewCell.swift */,
+				49DE339F1FE2386200EC0ECC /* RecipeTableViewCell.xib */,
 				4939448B1FE093CE00B38A9E /* ViewController.swift */,
 				4939448D1FE093CE00B38A9E /* Main.storyboard */,
 				493944901FE093CE00B38A9E /* Assets.xcassets */,
@@ -241,6 +247,7 @@
 				493944941FE093CE00B38A9E /* LaunchScreen.storyboard in Resources */,
 				493944911FE093CE00B38A9E /* Assets.xcassets in Resources */,
 				4939448F1FE093CE00B38A9E /* Main.storyboard in Resources */,
+				49DE33A11FE2386200EC0ECC /* RecipeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				493944B81FE0961700B38A9E /* APIManager.swift in Sources */,
+				49DE33A01FE2386200EC0ECC /* RecipeTableViewCell.swift in Sources */,
 				4939448C1FE093CE00B38A9E /* ViewController.swift in Sources */,
 				4939448A1FE093CE00B38A9E /* AppDelegate.swift in Sources */,
 				493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */,
