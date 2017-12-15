@@ -57,6 +57,7 @@ class SearchRecipeViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Foodies search"
+        searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.searchBar.sizeToFit()
         //searchController.searchBar.becomeFirstResponder()
@@ -73,6 +74,7 @@ class SearchRecipeViewController: UIViewController {
         return searchController.isActive && !searchBarIsEmpty()
     }
     
+    //TODO: Added scope for specific "category" searchers for later
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredRecipes = recipes.filter({(recipe: Recipe) -> Bool in
             return recipe.title.lowercased().contains(searchText.lowercased())
@@ -80,7 +82,7 @@ class SearchRecipeViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    private func getDataFilter(_ searchText: String) {
+    func getDataFilter(_ searchText: String) {
         APIRequestManager.manager.getDataWithQuery(endPoint: endpoint, query: searchText) { (data) in
             if let validData = data,
                 let allRecipes = Recipe.getRecipes(from: validData) {
@@ -147,6 +149,10 @@ extension SearchRecipeViewController: UISearchResultsUpdating, UISearchControlle
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         getDataFilter(searchController.searchBar.text!)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("BEGINNING")
     }
     
 }
