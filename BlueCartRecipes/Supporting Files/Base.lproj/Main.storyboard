@@ -12,6 +12,7 @@
     <customFonts key="customFonts">
         <array key="AvenirNext.ttc">
             <string>AvenirNext-UltraLight</string>
+            <string>AvenirNext-UltraLightItalic</string>
         </array>
     </customFonts>
     <scenes>
@@ -24,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AvZ-Ek-07Z">
-                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="iZf-6U-TO2" customClass="ColumnLayout" customModule="BlueCartRecipes" customModuleProvider="target"/>
                                 <cells>
@@ -45,11 +46,20 @@
                                     <outlet property="delegate" destination="zHj-hy-gWP" id="StA-p1-BVZ"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTO-WO-tky">
+                                <rect key="frame" x="0.0" y="61.5" width="375" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AvZ-Ek-07Z" firstAttribute="top" secondItem="JUL-kF-n9s" secondAttribute="top" constant="36" id="0If-6a-o6k"/>
+                            <constraint firstItem="JUL-kF-n9s" firstAttribute="top" secondItem="CTO-WO-tky" secondAttribute="bottom" constant="-21" id="EdG-Zd-7iD"/>
                             <constraint firstItem="JUL-kF-n9s" firstAttribute="bottom" secondItem="AvZ-Ek-07Z" secondAttribute="bottom" id="RbC-Vc-IpH"/>
+                            <constraint firstItem="CTO-WO-tky" firstAttribute="leading" secondItem="JUL-kF-n9s" secondAttribute="leading" id="XZi-Ut-fev"/>
+                            <constraint firstItem="AvZ-Ek-07Z" firstAttribute="top" secondItem="CTO-WO-tky" secondAttribute="bottom" constant="5" id="i6f-re-1Xo"/>
+                            <constraint firstItem="CTO-WO-tky" firstAttribute="trailing" secondItem="JUL-kF-n9s" secondAttribute="trailing" id="kcs-3n-6RT"/>
                             <constraint firstItem="AvZ-Ek-07Z" firstAttribute="leading" secondItem="JUL-kF-n9s" secondAttribute="leading" id="p28-1Y-Mg6"/>
                             <constraint firstItem="JUL-kF-n9s" firstAttribute="trailing" secondItem="AvZ-Ek-07Z" secondAttribute="trailing" id="qdn-GA-jRt"/>
                         </constraints>
@@ -58,11 +68,12 @@
                     <navigationItem key="navigationItem" id="Ex3-Dv-uny"/>
                     <connections>
                         <outlet property="collectionView" destination="AvZ-Ek-07Z" id="WAL-sy-bEM"/>
+                        <outlet property="searchLabel" destination="CTO-WO-tky" id="Rvg-iQ-JBc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azy-Di-R6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1866" y="15"/>
+            <point key="canvasLocation" x="1864.8" y="14.842578710644679"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="SWI-1b-SjR">

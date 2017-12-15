@@ -13,11 +13,11 @@ internal final class Recipe {
     let title: String
     let publisher: String
     let socialRank: Float
-    let sourceUrl: URL
+    let sourceUrl: URL?
     let imageUrl: String
     let recipeId: String
     
-    init(title: String, publisher: String, socialRank: Float, sourceUrl: URL, imageUrl: String, recipeId: String) {
+    init(title: String, publisher: String, socialRank: Float, sourceUrl: URL?, imageUrl: String, recipeId: String) {
         self.title = title
         self.socialRank = socialRank
         self.publisher = publisher

@@ -7,23 +7,37 @@
 //
 
 import UIKit
+import CoreData
 
 /// Initial VC
 internal final class SearchRecipeViewController: UIViewController {
     
+    @IBOutlet private weak var searchLabel: UILabel! {
+        didSet {
+            searchLabel.text = "Start searching your fav recipes!"
+        }
+    }
     @IBOutlet private weak var collectionView: UICollectionView!
     private let searchController = UISearchController(searchResultsController: nil)
     private var recipes = [Recipe]()
     private var filteredRecipes = [Recipe]()
-    private var pastSearches = [String]()
-    
+    private var pastSearches = [String]() //mirtest
+    private var searchEntries: [NSManagedObject] = []
     fileprivate let photoHeight: CGFloat = 200
+    
+    //TODO: Fake data used temporarily - API down
+    fileprivate var fakeRecipes = [Recipe]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getData(with: .search)
+        getFakeData()
+        //getData(with: .search)
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadSearches()
     }
     
     // MARK: NETWORK
@@ -52,6 +66,16 @@ internal final class SearchRecipeViewController: UIViewController {
         }
     }
     
+    //TODO: Fake data used temporarily - API down
+    private func getFakeData() {
+        let foods = ["Chicken", "Pizza", "Madeleines", "Tiramisu", "Lattes"]
+        let imageUrl = "https://imgix.ranker.com/user_node_img/50019/1000371390/original/another-awesome-einstein-photo-u1?w=650&q=50&fm=jpg&fit=crop&crop=faces"
+        for i in 0..<foods.count {
+            fakeRecipes.append(Recipe(title: foods[i], publisher: "fake person", socialRank: 100.0, sourceUrl: nil, imageUrl: imageUrl, recipeId: "id"))
+        }
+        recipes = fakeRecipes
+    }
+    
     // MARK: SETUP
     
     private func setup() {
@@ -59,7 +83,7 @@ internal final class SearchRecipeViewController: UIViewController {
         let nib = UINib(nibName: Constants.xibId , bundle: Bundle(for: RecipeCollectionViewCell.self))
         collectionView.register(nib, forCellWithReuseIdentifier: Constants.reuseIdentifier)
         
-        //CollectionView Layout
+        // CollectionView Layout
         if let layout = collectionView?.collectionViewLayout as? ColumnLayout {
             layout.delegate = self
             layout.numberOfColumns = 2
@@ -75,6 +99,9 @@ internal final class SearchRecipeViewController: UIViewController {
         searchController.searchBar.sizeToFit()
         navigationItem.titleView = searchController.searchBar
         navigationItem.title = Constants.mainPageTitle
+        
+        // Stored Data
+        loadSearches()
     }
     
     //MARK: SEARCH BAR FUNCTIONALITY
@@ -94,15 +121,54 @@ internal final class SearchRecipeViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    /// Saves searches in a fixed-length array to avoid over memory allocation.
-    /// Array resets after limit is reached.
-    private func saveSearch(_ searchText: String) {
-        if pastSearches.count == 20 {
-            pastSearches = []
+    private func updateSearchLabel(_ isSearching: Bool) {
+        if isSearching {
+            // While user is typing, showcase recent searches
+            var searches = String()
+            searchEntries.forEach({ (search) in
+                if let search = search.value(forKey: "entry") as? String {
+                    searches += "\(search),"
+                }
+            })
+            searchLabel.text = "Recent searches: \(searches)"
         } else {
-            pastSearches.append(searchText)
+            // When user hits return, showcase search count
+            if isFiltering() {
+                searchLabel.text = "\(filteredRecipes.count) recipes found"
+            } else {
+                searchLabel.text = "\(recipes.count) recipes found"
+            }
         }
-        print(pastSearches)
+    }
+    
+    // MARK: PERSISTENCE
+    private func saveSearch(_ searchText: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "SearchEntry", in: managedContext)!
+        let searchEntry = NSManagedObject(entity: entity, insertInto: managedContext)
+        searchEntry.setValue(searchText, forKey: "entry")
+        
+        do {
+            try managedContext.save()
+            searchEntries.append(searchEntry)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }it
+    }
+    
+    private func loadSearches() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SearchEntry")
+
+        do {
+            searchEntries = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
     
     //MARK: SEGUE
@@ -165,6 +231,15 @@ extension SearchRecipeViewController: UISearchResultsUpdating, UISearchControlle
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         getDataFilter(searchController.searchBar.text!)
         saveSearch(searchController.searchBar.text!)
+        updateSearchLabel(false)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        updateSearchLabel(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateSearchLabel(false)
     }
 }
 
