@@ -9,13 +9,17 @@
 import UIKit
 
 class SearchRecipeViewController: UIViewController {
-    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private let reuseIdentifier = "recipeCollectionViewCell"
     private let xibId = "RecipeCollectionViewCell"
     private let endpoint = "https://food2fork.com/api/search?key=ad25b12208fee8362324f237a2ea78d2"
-    private var recpies = [Recipe]()
+    private var recipes = [Recipe]()
+    private var filteredRecipes = [Recipe]()
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +32,7 @@ class SearchRecipeViewController: UIViewController {
         APIRequestManager.manager.getData(endPoint: endpoint) { (data) in
             if let validData = data,
                 let allRecipes = Recipe.getRecipes(from: validData) {
-                self.recpies = allRecipes
+                self.recipes = allRecipes
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -37,29 +41,75 @@ class SearchRecipeViewController: UIViewController {
     }
     
     private func setup() {
-        // Collectionview cell
+        // CollectionView xib
         let nib = UINib(nibName: xibId , bundle: Bundle(for: RecipeCollectionViewCell.self))
-        
         collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
+        //CollectionView Layout
+        if let layout = collectionView?.collectionViewLayout as? ColumnLayout {
+            layout.delegate = self
+            layout.numberOfColumns = 2
+        }
+        
         // Searchbar
-        searchBar.placeholder = "Favorite Food"
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Foodies search"
+        definesPresentationContext = true
+        searchController.searchBar.sizeToFit()
+        //searchController.searchBar.becomeFirstResponder()
+        navigationItem.titleView = searchController.searchBar
+    }
+    
+    //MARK: Search bar helper functions
+    
+    private func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredRecipes = recipes.filter({(recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        })
+        collectionView.reloadData()
+    }
+    
+    private func getDataFilter(_ searchText: String) {
+        APIRequestManager.manager.getDataWithQuery(endPoint: endpoint, query: searchText) { (data) in
+            if let validData = data,
+                let allRecipes = Recipe.getRecipes(from: validData) {
+                self.filteredRecipes = allRecipes
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
 }
 
 extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recpies.count
+        if isFiltering() {
+            return filteredRecipes.count
+        }
+        return recipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! RecipeCollectionViewCell
         
-        let recipeCell = recpies[indexPath.row]
+        var recipeCell: Recipe
+        if isFiltering() {
+            recipeCell = filteredRecipes[indexPath.row]
+        } else {
+            recipeCell = recipes[indexPath.row]
+        }
         cell.data(recipeCell.title, recipeCell.imageUrl)
         
         return cell
@@ -70,11 +120,26 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-extension SearchRecipeViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width/2, height: 200)
+extension SearchRecipeViewController: CustomLayoutDelegate {
+    func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
+        return 200
     }
 }
+
+extension SearchRecipeViewController: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarTexatDidEndEditing(_ searchBar: UISearchBar) {
+        getDataFilter(searchController.searchBar.text!)
+    }
+    
+}
+
+
+
 
 
 

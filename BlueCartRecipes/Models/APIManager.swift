@@ -29,4 +29,25 @@ internal final class APIRequestManager {
             callback(validData)
         }.resume()
     }
+    
+    func getDataWithQuery(endPoint: String, query: String, callback: @escaping (Data?) -> Void) {
+        let queryString = query.replacingOccurrences(of: " ", with: "%20")
+
+        guard let url = URL(string: endPoint+queryString) else {
+            return
+        }
+        
+        
+        let session = URLSession(configuration: .default)
+        session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            if error != nil {
+                print("Error durring session: \(String(describing: error))")
+            }
+            
+            guard let validData = data else {
+                return
+            }
+            callback(validData)
+            }.resume()
+    }
 }
