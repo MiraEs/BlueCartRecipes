@@ -15,6 +15,7 @@
 		493944AA1FE093CE00B38A9E /* BlueCartRecipesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944A91FE093CE00B38A9E /* BlueCartRecipesUITests.swift */; };
 		493944B81FE0961700B38A9E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944B71FE0961700B38A9E /* APIManager.swift */; };
 		493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944B91FE097AB00B38A9E /* Recipe.swift */; };
+		499AB7EB1FE38B6500A2E97B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499AB7EA1FE38B6500A2E97B /* Constants.swift */; };
 		49D0BC301FE355F600C53D97 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0BC2F1FE355F600C53D97 /* RecipeDetailViewController.swift */; };
 		49DE33A61FE2EE1500EC0ECC /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE33A51FE2EE1500EC0ECC /* SearchRecipeViewController.swift */; };
 		49DE33A91FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE33A71FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift */; };
@@ -54,6 +55,7 @@
 		493944AB1FE093CE00B38A9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		493944B71FE0961700B38A9E /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		493944B91FE097AB00B38A9E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		499AB7EA1FE38B6500A2E97B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		49D0BC2F1FE355F600C53D97 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		49DE33A51FE2EE1500EC0ECC /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
 		49DE33A71FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -109,11 +111,10 @@
 		493944881FE093CE00B38A9E /* BlueCartRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				49DE33A51FE2EE1500EC0ECC /* SearchRecipeViewController.swift */,
-				49D0BC2F1FE355F600C53D97 /* RecipeDetailViewController.swift */,
-				49DE33AB1FE2F8FB00EC0ECC /* ColumnLayout.swift */,
+				499AB7EC1FE450E200A2E97B /* Feature */,
 				49DE33A41FE2EDA800EC0ECC /* Models */,
 				49DE33A31FE2ED8E00EC0ECC /* RecipeCell */,
+				499AB7ED1FE4514F00A2E97B /* Utility */,
 				49DE33A21FE2ED8000EC0ECC /* Supporting Files */,
 				493944951FE093CE00B38A9E /* Info.plist */,
 			);
@@ -136,6 +137,24 @@
 				493944AB1FE093CE00B38A9E /* Info.plist */,
 			);
 			path = BlueCartRecipesUITests;
+			sourceTree = "<group>";
+		};
+		499AB7EC1FE450E200A2E97B /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				49DE33A51FE2EE1500EC0ECC /* SearchRecipeViewController.swift */,
+				49D0BC2F1FE355F600C53D97 /* RecipeDetailViewController.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		499AB7ED1FE4514F00A2E97B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				499AB7EA1FE38B6500A2E97B /* Constants.swift */,
+				49DE33AB1FE2F8FB00EC0ECC /* ColumnLayout.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		49DE33A21FE2ED8000EC0ECC /* Supporting Files */ = {
@@ -309,6 +328,7 @@
 				4939448A1FE093CE00B38A9E /* AppDelegate.swift in Sources */,
 				493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */,
 				49DE33AC1FE2F8FB00EC0ECC /* ColumnLayout.swift in Sources */,
+				499AB7EB1FE38B6500A2E97B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

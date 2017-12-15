@@ -8,19 +8,16 @@
 
 import UIKit
 
-class RecipeDetailViewController: UIViewController {
+
+internal final class RecipeDetailViewController: UIViewController {
     
-    var reuseIdentified = "recipeDetailCell"
     var detailRecipe: Recipe!
+    fileprivate var ingredients = [String]()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var recipeImage: UIImageView!
     
-    var ingredients = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(detailRecipe)
         
         downloadImage(detailRecipe.imageUrl)
         loadIngredients(detailRecipe.recipeId)
@@ -39,7 +36,7 @@ class RecipeDetailViewController: UIViewController {
     }
 
     private func downloadImage(_ url: String) {
-        APIRequestManager.manager.getData(endPoint: url) { (data: Data?) in
+        APIRequestManager.manager.getData(imageUrl: url, query: nil, id: nil, requestType: .image) { (data: Data?) in
             if data != nil {
                 if let validData = data,
                     let validImage = UIImage(data: validData) {
@@ -58,8 +55,16 @@ extension RecipeDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentified, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.rdReuseIdentifier, for: indexPath)
         cell.textLabel?.text = ingredients[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+        }
     }
 }

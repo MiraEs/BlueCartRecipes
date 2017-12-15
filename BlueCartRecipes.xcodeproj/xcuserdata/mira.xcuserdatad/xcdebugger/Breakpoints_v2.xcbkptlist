@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BlueCartRecipes/Models/APIManager.swift"
-            timestampString = "535001815.186853"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "getDataWithQuery(endPoint:query:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BlueCartRecipes/SearchRecipeViewController.swift"
-            timestampString = "535001815.187295"
+            timestampString = "535054303.054296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "getDataFilter(_:)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

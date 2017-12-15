@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Class builds out Recipe object.
 internal final class Recipe {
     let title: String
     let publisher: String
