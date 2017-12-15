@@ -50,4 +50,33 @@ internal final class APIRequestManager {
             callback(validData)
             }.resume()
     }
+    
+//    private let endpoint = "https://food2fork.com/api/"
+//    private let key = "?key=ad25b12208fee8362324f237a2ea78d2&rId="
+//    private let search = "search"
+//    private let get = "get"
+    
+    func getRecipeData(id: String, callback: @escaping (Data?) -> Void) {
+        let endpoint = "https://food2fork.com/api/"
+        let key = "?key=ad25b12208fee8362324f237a2ea78d2&rId="
+        let get = "get"
+        
+        let path = endpoint + get + key + id
+        guard let url = URL(string: path) else {
+            return
+        }
+        
+        
+        let session = URLSession(configuration: .default)
+        session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            if error != nil {
+                print("Error durring session: \(String(describing: error))")
+            }
+            
+            guard let validData = data else {
+                return
+            }
+            callback(validData)
+            }.resume()
+    }
 }

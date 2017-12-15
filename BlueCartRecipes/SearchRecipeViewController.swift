@@ -16,6 +16,7 @@ class SearchRecipeViewController: UIViewController {
     private let endpoint = "https://food2fork.com/api/search?key=ad25b12208fee8362324f237a2ea78d2"
     private var recipes = [Recipe]()
     private var filteredRecipes = [Recipe]()
+    private let segueId = "recipeDetailSegue"
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -90,6 +91,17 @@ class SearchRecipeViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueId {
+            guard let selectedIndexPath = sender as? IndexPath,
+                let dvc = segue.destination as? RecipeDetailViewController else {
+                    return
+            }
+            dvc.detailRecipe = recipes[selectedIndexPath.row]
+        }
+    }
 }
 
 extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -116,7 +128,8 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        //print(indexPath)
+        performSegue(withIdentifier: segueId, sender: indexPath)
     }
 }
 
@@ -132,7 +145,7 @@ extension SearchRecipeViewController: UISearchResultsUpdating, UISearchControlle
         filterContentForSearchText(searchController.searchBar.text!)
     }
     
-    func searchBarTexatDidEndEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         getDataFilter(searchController.searchBar.text!)
     }
     
