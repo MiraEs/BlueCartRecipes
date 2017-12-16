@@ -31,14 +31,13 @@ internal final class SearchRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //getFakeData()
-        getData(with: .search)
+        getFakeData()
+        //getData(with: .search)
         setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadSearchRecipes()
-        loadSearches()
+        loadSavedData()
     }
     
     // MARK: NETWORK
@@ -113,8 +112,7 @@ internal final class SearchRecipeViewController: UIViewController {
         self.view.backgroundColor = UIColor.cyan
         
         // Stored Data
-        loadSearches()
-        loadSearchRecipes()
+        loadSavedData()
     }
     
     //MARK: SEARCH BAR FUNCTIONALITY
@@ -173,20 +171,6 @@ internal final class SearchRecipeViewController: UIViewController {
         }
     }
     
-    /// Loads previously searched texts.
-    private func loadSearches() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.searchEntity)
-
-        do {
-            searchEntries = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-    }
-    
     /// Saves recently searched and loaded recipes.
     private func saveSearchRecipes(_ recipe: Recipe) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -195,9 +179,9 @@ internal final class SearchRecipeViewController: UIViewController {
         let recipeEntity = NSEntityDescription.entity(forEntityName: Constants.recipeEntity, in: managedContext)!
         let recipeSearch = NSManagedObject(entity: recipeEntity, insertInto: managedContext)
         recipeSearch.setValuesForKeys([
-                Constants.recipeIdKey: recipe.recipeId,
-                Constants.titleKey: recipe.title,
-                Constants.imageKey: recipe.imageUrl
+            Constants.recipeIdKey: recipe.recipeId,
+            Constants.titleKey: recipe.title,
+            Constants.imageKey: recipe.imageUrl
             ])
         
         do {
@@ -208,14 +192,17 @@ internal final class SearchRecipeViewController: UIViewController {
         }
     }
     
-    private func loadSearchRecipes() {
+    /// Loads previously searched texts.
+    private func loadSavedData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
+
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.recipeEntity)
-        
+        let fetchRequestSearches = NSFetchRequest<NSManagedObject>(entityName: Constants.searchEntity)
+        let fetchRequestRecipes = NSFetchRequest<NSManagedObject>(entityName: Constants.recipeEntity)
+
         do {
-            recipeSearches = try managedContext.fetch(fetchRequest)
+            searchEntries = try managedContext.fetch(fetchRequestSearches)
+            recipeSearches = try managedContext.fetch(fetchRequestRecipes)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
