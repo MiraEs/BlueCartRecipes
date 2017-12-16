@@ -23,6 +23,7 @@ internal final class SearchRecipeViewController: UIViewController {
     private var recipes = [Recipe]()
     private var filteredRecipes = [Recipe]()
     private var searchEntries: [NSManagedObject] = []
+    private var recipeSearches: [NSManagedObject] = []
     
     //TODO: ******Fake data used temporarily - API down
     private var fakeRecipes = [Recipe]()
@@ -30,12 +31,13 @@ internal final class SearchRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getFakeData()
-        //getData(with: .search)
+        //getFakeData()
+        getData(with: .search)
         setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadSearchRecipes()
         loadSearches()
     }
     
@@ -48,6 +50,14 @@ internal final class SearchRecipeViewController: UIViewController {
                 self.recipes = allRecipes
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                }
+            } else {
+                if !self.recipeSearches.isEmpty {
+                    self.recipeSearches.forEach({ (storedRecipe) in
+                        self.recipes.append(Recipe(title: storedRecipe.value(forKey: Constants.titleKey) as! String,
+                                              socialRank: nil, imageUrl: storedRecipe.value(forKey: Constants.imageKey) as! String,
+                                              recipeId: storedRecipe.value(forKey: Constants.recipeIdKey) as! String))
+                    })
                 }
             }
         }
@@ -70,7 +80,7 @@ internal final class SearchRecipeViewController: UIViewController {
         let foods = ["Chicken", "Pizza", "Madeleines", "Tiramisu", "Lattes", "More Pizza", "Clam Chowder", "Bubble Tea"]
         let imageUrl = "https://imgix.ranker.com/user_node_img/50019/1000371390/original/another-awesome-einstein-photo-u1?w=650&q=50&fm=jpg&fit=crop&crop=faces"
         for i in 0..<foods.count {
-            fakeRecipes.append(Recipe(title: foods[i], publisher: "fake person", socialRank: 100.0, sourceUrl: nil, imageUrl: imageUrl, recipeId: "id"))
+            fakeRecipes.append(Recipe(title: foods[i], socialRank: 100.0, imageUrl: imageUrl, recipeId: "id"))
         }
         recipes = fakeRecipes
     }
@@ -104,6 +114,7 @@ internal final class SearchRecipeViewController: UIViewController {
         
         // Stored Data
         loadSearches()
+        loadSearchRecipes()
     }
     
     //MARK: SEARCH BAR FUNCTIONALITY
@@ -118,6 +129,7 @@ internal final class SearchRecipeViewController: UIViewController {
     
     private func filterContentForSearchText(_ searchText: String) {
         filteredRecipes = recipes.filter({(recipe: Recipe) -> Bool in
+            saveSearchRecipes(recipe)
             return recipe.title.lowercased().contains(searchText.lowercased())
         })
         collectionView.reloadData()
@@ -125,16 +137,16 @@ internal final class SearchRecipeViewController: UIViewController {
     
     private func updateSearchLabel(_ isSearching: Bool) {
         if isSearching {
-            // While user is typing, showcase recent searches
+            // While user is typing, showcase recent searches.
             var searches = String()
             searchEntries.reversed().forEach({ (search) in
-                if let search = search.value(forKey: "entry") as? String {
+                if let search = search.value(forKey: Constants.entryKey) as? String {
                     searches += "\(search),"
                 }
             })
             searchLabel.text = "Recent searches: \(searches)"
         } else {
-            // When user hits return, showcase search count
+            // When user hits return, showcase search count.
             if isFiltering() {
                 searchLabel.text = "\(filteredRecipes.count) recipes found"
             } else {
@@ -144,6 +156,7 @@ internal final class SearchRecipeViewController: UIViewController {
     }
     
     // MARK: PERSISTENCE
+    /// Saves previously search texts.
     private func saveSearch(_ searchText: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
@@ -160,6 +173,7 @@ internal final class SearchRecipeViewController: UIViewController {
         }
     }
     
+    /// Loads previously searched texts.
     private func loadSearches() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
@@ -168,6 +182,40 @@ internal final class SearchRecipeViewController: UIViewController {
 
         do {
             searchEntries = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    /// Saves recently searched and loaded recipes.
+    private func saveSearchRecipes(_ recipe: Recipe) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let recipeEntity = NSEntityDescription.entity(forEntityName: Constants.recipeEntity, in: managedContext)!
+        let recipeSearch = NSManagedObject(entity: recipeEntity, insertInto: managedContext)
+        recipeSearch.setValuesForKeys([
+                Constants.recipeIdKey: recipe.recipeId,
+                Constants.titleKey: recipe.title,
+                Constants.imageKey: recipe.imageUrl
+            ])
+        
+        do {
+            try managedContext.save()
+            recipeSearches.append(recipeSearch)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func loadSearchRecipes() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.recipeEntity)
+        
+        do {
+            recipeSearches = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -223,10 +271,9 @@ extension SearchRecipeViewController: CustomLayoutDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         let currentYoffset = scrollView.contentOffset.y
         let translationY = view.frame.width/2
-        
+
         UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseOut, animations: { [weak self] in
                 if currentYoffset > 0 {
                     self?.navigationItem.titleView?.transform = CGAffineTransform(translationX: 0, y: -translationY)

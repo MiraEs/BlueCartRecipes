@@ -28,6 +28,11 @@ struct Constants {
     static let searchEntity = "SearchEntry"
     static let entryKey = "entry"
     
+    static let recipeEntity = "RecipeEntity"
+    static let recipeIdKey = "recipeId"
+    static let titleKey = "title"
+    static let imageKey = "imageUrl"
+    
     //MARK: UI - SEARCH RECIPE COLLECTION VIEW
     static let photoHeight: CGFloat = 200
 }

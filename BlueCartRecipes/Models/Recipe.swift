@@ -11,17 +11,13 @@ import Foundation
 /// Class builds out Recipe object.
 internal final class Recipe {
     let title: String
-    let publisher: String
-    let socialRank: Float
-    let sourceUrl: URL?
+    let socialRank: Float?
     let imageUrl: String
     let recipeId: String
     
-    init(title: String, publisher: String, socialRank: Float, sourceUrl: URL?, imageUrl: String, recipeId: String) {
+    init(title: String, socialRank: Float?, imageUrl: String, recipeId: String) {
         self.title = title
         self.socialRank = socialRank
-        self.publisher = publisher
-        self.sourceUrl = sourceUrl
         self.imageUrl = imageUrl
         self.recipeId = recipeId
     }
@@ -44,17 +40,14 @@ internal final class Recipe {
             for recipe in recipeDict {
                 guard
                     let title = recipe["title"] as? String,
-                    let publisher = recipe["publisher"] as? String,
                     let socialRank = recipe["social_rank"] as? Float,
-                    let sourceUrlString = recipe["f2f_url"] as? String,
-                    let sourceUrl = URL(string: sourceUrlString),
                     let imageUrl = recipe["image_url"] as? String,
                     let recipeId = recipe["recipe_id"] as? String else {
                         print("error parsing")
                         return nil
                 }
                 
-                recipes.append(Recipe(title: title, publisher: publisher, socialRank: socialRank, sourceUrl: sourceUrl, imageUrl: imageUrl, recipeId: recipeId))
+                recipes.append(Recipe(title: title, socialRank: socialRank, imageUrl: imageUrl, recipeId: recipeId))
             }
         } catch let error as NSError {
             print(error.localizedDescription)

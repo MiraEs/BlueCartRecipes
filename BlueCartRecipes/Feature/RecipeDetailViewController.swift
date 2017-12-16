@@ -16,7 +16,8 @@ internal final class RecipeDetailViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var recipeImage: UIImageView!
     
-    fileprivate var ingredients = [String]()
+    private var ingredients = [String]()
+    private let imageCache = NSCache<NSString, UIImage>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ internal final class RecipeDetailViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension RecipeDetailViewController: UITableViewDelegate, UITableViewDataSource {
