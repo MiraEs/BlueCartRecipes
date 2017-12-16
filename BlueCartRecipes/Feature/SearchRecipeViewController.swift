@@ -31,8 +31,8 @@ internal final class SearchRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getFakeData()
-        //getData(with: .search)
+        //getFakeData()
+        getData(with: .search)
         setup()
     }
     
@@ -107,9 +107,7 @@ internal final class SearchRecipeViewController: UIViewController {
         searchController.searchBar.sizeToFit()
         navigationItem.titleView = searchController.searchBar
         navigationItem.titleView?.backgroundColor = UIColor.blue
-        navigationItem.title = Constants.mainPageTitle
-        
-        self.view.backgroundColor = UIColor.cyan
+        self.title = Constants.mainPageTitle
         
         // Stored Data
         loadSavedData()
