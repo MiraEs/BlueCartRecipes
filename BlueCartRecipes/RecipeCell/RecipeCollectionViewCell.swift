@@ -18,22 +18,8 @@ internal final class RecipeCollectionViewCell: UICollectionViewCell {
     ///
     /// - Returns: Recipe object data.
     func data(_ title: String, _ imageUrl: String) {
+        
         self.recipeTitle.text = title
-        downloadImage(imageUrl)
+        recipeImage.loadImageFromUrl(imageUrl)
     }
-    
-    private func downloadImage(_ url: String) {
-        APIRequestManager.manager.getData(imageUrl: url, query: nil, id: nil, requestType: .image) { (data: Data?) in
-            if data != nil {
-                if let validData = data,
-                    let validImage = UIImage(data: validData) {
-                    DispatchQueue.main.async {
-                        self.recipeImage.image = validImage
-                    }
-                }
-            }
-        }
-    }
-
-
 }

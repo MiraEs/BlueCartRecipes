@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     // MARK: SEARCH RECIPE VC
@@ -15,11 +16,18 @@ struct Constants {
     static let segueId = "recipeDetailSegue"
     static let searchPlaceholder = "Search a recipe"
     static let mainPageTitle = "Search for Recipes"
+    static let searchLabelText = "Start searching your fav recipes!"
     
     // MARK: RECIPE DETAIL VC
     static let rdReuseIdentifier = "recipeDetailCell"
     
-    
     // MARK: API
     static let baseEndpoint = "https://food2fork.com/api/search?key=ad25b12208fee8362324f237a2ea78d2"
+    
+    // MARK: CORE DATA
+    static let searchEntity = "SearchEntry"
+    static let entryKey = "entry"
+    
+    //MARK: UI - SEARCH RECIPE COLLECTION VIEW
+    static let photoHeight: CGFloat = 200
 }

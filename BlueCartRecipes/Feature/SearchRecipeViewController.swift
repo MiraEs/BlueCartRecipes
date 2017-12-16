@@ -9,24 +9,23 @@
 import UIKit
 import CoreData
 
-/// Initial VC
+/// Initial VC with preloaded data of top 30 recipes.
 internal final class SearchRecipeViewController: UIViewController {
     
     @IBOutlet private weak var searchLabel: UILabel! {
         didSet {
-            searchLabel.text = "Start searching your fav recipes!"
+            searchLabel.text = Constants.searchLabelText
         }
     }
     @IBOutlet private weak var collectionView: UICollectionView!
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private var recipes = [Recipe]()
     private var filteredRecipes = [Recipe]()
-    private var pastSearches = [String]() //mirtest
     private var searchEntries: [NSManagedObject] = []
-    fileprivate let photoHeight: CGFloat = 200
     
-    //TODO: Fake data used temporarily - API down
-    fileprivate var fakeRecipes = [Recipe]()
+    //TODO: ******Fake data used temporarily - API down
+    private var fakeRecipes = [Recipe]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +65,9 @@ internal final class SearchRecipeViewController: UIViewController {
         }
     }
     
-    //TODO: Fake data used temporarily - API down
+    //TODO: ******Fake data used temporarily - API down
     private func getFakeData() {
-        let foods = ["Chicken", "Pizza", "Madeleines", "Tiramisu", "Lattes"]
+        let foods = ["Chicken", "Pizza", "Madeleines", "Tiramisu", "Lattes", "More Pizza", "Clam Chowder", "Bubble Tea"]
         let imageUrl = "https://imgix.ranker.com/user_node_img/50019/1000371390/original/another-awesome-einstein-photo-u1?w=650&q=50&fm=jpg&fit=crop&crop=faces"
         for i in 0..<foods.count {
             fakeRecipes.append(Recipe(title: foods[i], publisher: "fake person", socialRank: 100.0, sourceUrl: nil, imageUrl: imageUrl, recipeId: "id"))
@@ -98,7 +97,10 @@ internal final class SearchRecipeViewController: UIViewController {
         definesPresentationContext = true
         searchController.searchBar.sizeToFit()
         navigationItem.titleView = searchController.searchBar
+        navigationItem.titleView?.backgroundColor = UIColor.blue
         navigationItem.title = Constants.mainPageTitle
+        
+        self.view.backgroundColor = UIColor.cyan
         
         // Stored Data
         loadSearches()
@@ -125,7 +127,7 @@ internal final class SearchRecipeViewController: UIViewController {
         if isSearching {
             // While user is typing, showcase recent searches
             var searches = String()
-            searchEntries.forEach({ (search) in
+            searchEntries.reversed().forEach({ (search) in
                 if let search = search.value(forKey: "entry") as? String {
                     searches += "\(search),"
                 }
@@ -146,23 +148,23 @@ internal final class SearchRecipeViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "SearchEntry", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: Constants.searchEntity, in: managedContext)!
         let searchEntry = NSManagedObject(entity: entity, insertInto: managedContext)
-        searchEntry.setValue(searchText, forKey: "entry")
+        searchEntry.setValue(searchText, forKey: Constants.entryKey)
         
         do {
             try managedContext.save()
             searchEntries.append(searchEntry)
         } catch let error as NSError {
             print(error.localizedDescription)
-        }it
+        }
     }
     
     private func loadSearches() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SearchEntry")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.searchEntity)
 
         do {
             searchEntries = try managedContext.fetch(fetchRequest)
@@ -197,15 +199,13 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
         return recipes.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.reuseIdentifier, for: indexPath) as! RecipeCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.reuseIdentifier,
+                                                      for: indexPath) as! RecipeCollectionViewCell
         
         var recipeCell: Recipe
-        if isFiltering() {
-            recipeCell = filteredRecipes[indexPath.row]
-        } else {
-            recipeCell = recipes[indexPath.row]
-        }
+        recipeCell = isFiltering() ? filteredRecipes[indexPath.row] : recipes[indexPath.row]
         cell.data(recipeCell.title, recipeCell.imageUrl)
         
         return cell
@@ -217,8 +217,23 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
 }
 
 extension SearchRecipeViewController: CustomLayoutDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return photoHeight
+        return Constants.photoHeight
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y)
+        let currentYoffset = scrollView.contentOffset.y
+        let translationY = view.frame.width/2
+        
+        UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseOut, animations: { [weak self] in
+                if currentYoffset > 0 {
+                    self?.navigationItem.titleView?.transform = CGAffineTransform(translationX: 0, y: -translationY)
+                } else {
+                    self?.navigationItem.titleView?.transform = CGAffineTransform.identity
+                }
+            }, completion: nil)
     }
 }
 
@@ -239,12 +254,10 @@ extension SearchRecipeViewController: UISearchResultsUpdating, UISearchControlle
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.text = nil
         updateSearchLabel(false)
     }
 }
-
-
-
 
 
 
