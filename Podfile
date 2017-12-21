@@ -2,12 +2,10 @@
 # platform :ios, '9.0'
 
 target 'BlueCartRecipes' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for BlueCartRecipes
-    pod 'RxSwift', '~> 3.0.0.beta.1'
-    pod 'RxCocoa', '~> 3.0.0.beta.1'
+    pod 'RxSwift'
+    pod 'RxCocoa'
 
   target 'BlueCartRecipesTests' do
     inherit! :search_paths

@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import RxSwift
+import RxCocoa
 
 /// Initial VC with preloaded data of top 30 recipes.
 internal final class SearchRecipeViewController: UIViewController {

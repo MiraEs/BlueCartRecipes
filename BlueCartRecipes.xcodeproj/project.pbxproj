@@ -23,6 +23,9 @@
 		49DE33A91FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE33A71FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift */; };
 		49DE33AA1FE2EF1700EC0ECC /* RecipeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DE33A81FE2EF1700EC0ECC /* RecipeCollectionViewCell.xib */; };
 		49DE33AC1FE2F8FB00EC0ECC /* ColumnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE33AB1FE2F8FB00EC0ECC /* ColumnLayout.swift */; };
+		DF7FD8EBAB59132734D1E9EB /* Pods_BlueCartRecipesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135B165C06C3CD49DA24A4EF /* Pods_BlueCartRecipesUITests.framework */; };
+		E49A00B7B4224FB5202D44ED /* Pods_BlueCartRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEF0DB4412825A9EF4C2971 /* Pods_BlueCartRecipes.framework */; };
+		E4F82B3B9433AE3CB223D323 /* Pods_BlueCartRecipesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC9D76FD675E3019FFEC8B2 /* Pods_BlueCartRecipesTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		135B165C06C3CD49DA24A4EF /* Pods_BlueCartRecipesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueCartRecipesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20E2F355F81A753485E6FA84 /* Pods-BlueCartRecipes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipes/Pods-BlueCartRecipes.debug.xcconfig"; sourceTree = "<group>"; };
+		2D39DA02319F1B2AF9C10150 /* Pods-BlueCartRecipesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipesUITests/Pods-BlueCartRecipesUITests.release.xcconfig"; sourceTree = "<group>"; };
+		418303EDD3194C8DFF1F91A6 /* Pods-BlueCartRecipesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipesUITests/Pods-BlueCartRecipesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		493944861FE093CE00B38A9E /* BlueCartRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCartRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493944891FE093CE00B38A9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4939448E1FE093CE00B38A9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +72,11 @@
 		49DE33A71FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		49DE33A81FE2EF1700EC0ECC /* RecipeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCollectionViewCell.xib; sourceTree = "<group>"; };
 		49DE33AB1FE2F8FB00EC0ECC /* ColumnLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnLayout.swift; sourceTree = "<group>"; };
+		57C8052FB0AB331338594708 /* Pods-BlueCartRecipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipes.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipes/Pods-BlueCartRecipes.release.xcconfig"; sourceTree = "<group>"; };
+		8FD145684DF2B19F29C9FBAF /* Pods-BlueCartRecipesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipesTests/Pods-BlueCartRecipesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9CEF0DB4412825A9EF4C2971 /* Pods_BlueCartRecipes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueCartRecipes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBC9D76FD675E3019FFEC8B2 /* Pods_BlueCartRecipesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueCartRecipesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8955342FC7D7B9A80292F92 /* Pods-BlueCartRecipesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipesTests/Pods-BlueCartRecipesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49A00B7B4224FB5202D44ED /* Pods_BlueCartRecipes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F82B3B9433AE3CB223D323 /* Pods_BlueCartRecipesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,12 +100,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7FD8EBAB59132734D1E9EB /* Pods_BlueCartRecipesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4792E0CE2CC33324855BE846 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CEF0DB4412825A9EF4C2971 /* Pods_BlueCartRecipes.framework */,
+				EBC9D76FD675E3019FFEC8B2 /* Pods_BlueCartRecipesTests.framework */,
+				135B165C06C3CD49DA24A4EF /* Pods_BlueCartRecipesUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4939447D1FE093CE00B38A9E = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +124,8 @@
 				4939449D1FE093CE00B38A9E /* BlueCartRecipesTests */,
 				493944A81FE093CE00B38A9E /* BlueCartRecipesUITests */,
 				493944871FE093CE00B38A9E /* Products */,
+				7D2B608DDCC378BC48129171 /* Pods */,
+				4792E0CE2CC33324855BE846 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,6 +219,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		7D2B608DDCC378BC48129171 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20E2F355F81A753485E6FA84 /* Pods-BlueCartRecipes.debug.xcconfig */,
+				57C8052FB0AB331338594708 /* Pods-BlueCartRecipes.release.xcconfig */,
+				8FD145684DF2B19F29C9FBAF /* Pods-BlueCartRecipesTests.debug.xcconfig */,
+				F8955342FC7D7B9A80292F92 /* Pods-BlueCartRecipesTests.release.xcconfig */,
+				418303EDD3194C8DFF1F91A6 /* Pods-BlueCartRecipesUITests.debug.xcconfig */,
+				2D39DA02319F1B2AF9C10150 /* Pods-BlueCartRecipesUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,9 +239,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 493944AE1FE093CE00B38A9E /* Build configuration list for PBXNativeTarget "BlueCartRecipes" */;
 			buildPhases = (
+				9772034E44387FBEE90823C9 /* [CP] Check Pods Manifest.lock */,
 				493944821FE093CE00B38A9E /* Sources */,
 				493944831FE093CE00B38A9E /* Frameworks */,
 				493944841FE093CE00B38A9E /* Resources */,
+				687EA18993694F482B291460 /* [CP] Embed Pods Frameworks */,
+				F7B9DB81F4FBCBAE7BC57384 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,9 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 493944B11FE093CE00B38A9E /* Build configuration list for PBXNativeTarget "BlueCartRecipesTests" */;
 			buildPhases = (
+				C1E72B01C0439504B03B3E04 /* [CP] Check Pods Manifest.lock */,
 				493944961FE093CE00B38A9E /* Sources */,
 				493944971FE093CE00B38A9E /* Frameworks */,
 				493944981FE093CE00B38A9E /* Resources */,
+				124A66F0E040FD9E419A58F7 /* [CP] Embed Pods Frameworks */,
+				4ED5EC5D52EC6ED6EB063F11 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 493944B41FE093CE00B38A9E /* Build configuration list for PBXNativeTarget "BlueCartRecipesUITests" */;
 			buildPhases = (
+				FB0D855BA7973AF73116258E /* [CP] Check Pods Manifest.lock */,
 				493944A11FE093CE00B38A9E /* Sources */,
 				493944A21FE093CE00B38A9E /* Frameworks */,
 				493944A31FE093CE00B38A9E /* Resources */,
+				8B1B99234DD92B48024728C9 /* [CP] Embed Pods Frameworks */,
+				B412C86E7E2A3DE7CC239F28 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,6 +370,158 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		124A66F0E040FD9E419A58F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipesTests/Pods-BlueCartRecipesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4ED5EC5D52EC6ED6EB063F11 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipesTests/Pods-BlueCartRecipesTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		687EA18993694F482B291460 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipes/Pods-BlueCartRecipes-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipes/Pods-BlueCartRecipes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B1B99234DD92B48024728C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipesUITests/Pods-BlueCartRecipesUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9772034E44387FBEE90823C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlueCartRecipes-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B412C86E7E2A3DE7CC239F28 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipesUITests/Pods-BlueCartRecipesUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1E72B01C0439504B03B3E04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlueCartRecipesTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7B9DB81F4FBCBAE7BC57384 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueCartRecipes/Pods-BlueCartRecipes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB0D855BA7973AF73116258E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlueCartRecipesUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		493944821FE093CE00B38A9E /* Sources */ = {
@@ -500,6 +701,7 @@
 		};
 		493944AF1FE093CE00B38A9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20E2F355F81A753485E6FA84 /* Pods-BlueCartRecipes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -516,6 +718,7 @@
 		};
 		493944B01FE093CE00B38A9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57C8052FB0AB331338594708 /* Pods-BlueCartRecipes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -532,6 +735,7 @@
 		};
 		493944B21FE093CE00B38A9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FD145684DF2B19F29C9FBAF /* Pods-BlueCartRecipesTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -548,6 +752,7 @@
 		};
 		493944B31FE093CE00B38A9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8955342FC7D7B9A80292F92 /* Pods-BlueCartRecipesTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -564,6 +769,7 @@
 		};
 		493944B51FE093CE00B38A9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 418303EDD3194C8DFF1F91A6 /* Pods-BlueCartRecipesUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -579,6 +785,7 @@
 		};
 		493944B61FE093CE00B38A9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D39DA02319F1B2AF9C10150 /* Pods-BlueCartRecipesUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
