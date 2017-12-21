@@ -1,0 +1,6 @@
+framework module Pods_BlueCartRecipesUITests {
+  umbrella header "Pods-BlueCartRecipesUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
