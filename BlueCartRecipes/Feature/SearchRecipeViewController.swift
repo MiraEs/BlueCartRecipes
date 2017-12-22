@@ -22,10 +22,13 @@ internal final class SearchRecipeViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var recipes = [Recipe]()
+    //private var recipes = [Recipe]()
+    private let recipes: Variable<[Recipe]> = Variable([])
     private var filteredRecipes = [Recipe]()
     private var searchEntries: [NSManagedObject] = []
     private var recipeSearches: [NSManagedObject] = []
+    
+    private let disposeBag = DisposeBag()
     
     //TODO: ******Fake data used temporarily - API down
     private var fakeRecipes = [Recipe]()
@@ -42,20 +45,25 @@ internal final class SearchRecipeViewController: UIViewController {
         loadSavedData()
     }
     
+    // MARK: Rx Setup
+    private func setupObserver() {
+        
+    }
+    
     // MARK: NETWORK
     
     private func getData(with request: RequestType) {
         APIRequestManager.manager.getData(imageUrl: nil, query: nil, id: nil, requestType: request) { (data) in
             if let validData = data,
                 let allRecipes = Recipe.getRecipes(from: validData) {
-                self.recipes = allRecipes
+                self.recipes.value = allRecipes
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
             } else {
                 if !self.recipeSearches.isEmpty {
                     self.recipeSearches.forEach({ (storedRecipe) in
-                        self.recipes.append(Recipe(title: storedRecipe.value(forKey: Constants.titleKey) as! String,
+                        self.recipes.value.append(Recipe(title: storedRecipe.value(forKey: Constants.titleKey) as! String,
                                               socialRank: nil, imageUrl: storedRecipe.value(forKey: Constants.imageKey) as! String,
                                               recipeId: storedRecipe.value(forKey: Constants.recipeIdKey) as! String))
                     })
@@ -83,7 +91,7 @@ internal final class SearchRecipeViewController: UIViewController {
         for i in 0..<foods.count {
             fakeRecipes.append(Recipe(title: foods[i], socialRank: 100.0, imageUrl: imageUrl, recipeId: "id"))
         }
-        recipes = fakeRecipes
+        recipes.value = fakeRecipes
     }
     
     // MARK: SETUP
@@ -126,7 +134,7 @@ internal final class SearchRecipeViewController: UIViewController {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        filteredRecipes = recipes.filter({(recipe: Recipe) -> Bool in
+        filteredRecipes = recipes.value.filter({(recipe: Recipe) -> Bool in
             saveSearchRecipes(recipe)
             return recipe.title.lowercased().contains(searchText.lowercased())
         })
@@ -148,7 +156,7 @@ internal final class SearchRecipeViewController: UIViewController {
             if isFiltering() {
                 searchLabel.text = "\(filteredRecipes.count) recipes found"
             } else {
-                searchLabel.text = "\(recipes.count) recipes found"
+                searchLabel.text = "\(recipes.value.count) recipes found"
             }
         }
     }
@@ -219,7 +227,7 @@ internal final class SearchRecipeViewController: UIViewController {
             if isFiltering() {
                 dvc.detailRecipe = filteredRecipes[selectedIndexPath.row]
             } else {
-                dvc.detailRecipe = recipes[selectedIndexPath.row]
+                dvc.detailRecipe = recipes.value[selectedIndexPath.row]
             }
         }
     }
@@ -231,7 +239,7 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
         if isFiltering() {
             return filteredRecipes.count
         }
-        return recipes.count
+        return recipes.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -240,7 +248,7 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
                                                       for: indexPath) as! RecipeCollectionViewCell
         
         var recipeCell: Recipe
-        recipeCell = isFiltering() ? filteredRecipes[indexPath.row] : recipes[indexPath.row]
+        recipeCell = isFiltering() ? filteredRecipes[indexPath.row] : recipes.value[indexPath.row]
         cell.data(recipeCell.title, recipeCell.imageUrl)
         
         return cell
