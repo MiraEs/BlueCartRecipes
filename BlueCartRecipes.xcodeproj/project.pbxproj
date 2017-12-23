@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49175D1C1FEEFA1600D75818 /* ExampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49175D1B1FEEFA1600D75818 /* ExampleClass.swift */; };
+		49175D1E1FEF002A00D75818 /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49175D1D1FEF002A00D75818 /* GoogleModel.swift */; };
+		49175D201FEF018300D75818 /* GoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49175D1F1FEF018300D75818 /* GoogleViewController.swift */; };
 		4939448A1FE093CE00B38A9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493944891FE093CE00B38A9E /* AppDelegate.swift */; };
 		4939448F1FE093CE00B38A9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4939448D1FE093CE00B38A9E /* Main.storyboard */; };
 		493944911FE093CE00B38A9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493944901FE093CE00B38A9E /* Assets.xcassets */; };
@@ -50,6 +53,9 @@
 		20E2F355F81A753485E6FA84 /* Pods-BlueCartRecipes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipes/Pods-BlueCartRecipes.debug.xcconfig"; sourceTree = "<group>"; };
 		2D39DA02319F1B2AF9C10150 /* Pods-BlueCartRecipesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipesUITests/Pods-BlueCartRecipesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		418303EDD3194C8DFF1F91A6 /* Pods-BlueCartRecipesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueCartRecipesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueCartRecipesUITests/Pods-BlueCartRecipesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		49175D1B1FEEFA1600D75818 /* ExampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleClass.swift; sourceTree = "<group>"; };
+		49175D1D1FEF002A00D75818 /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
+		49175D1F1FEF018300D75818 /* GoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleViewController.swift; sourceTree = "<group>"; };
 		493944861FE093CE00B38A9E /* BlueCartRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCartRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493944891FE093CE00B38A9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4939448E1FE093CE00B38A9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +123,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		49175D1A1FEEF9A700D75818 /* rx testing */ = {
+			isa = PBXGroup;
+			children = (
+				49175D1B1FEEFA1600D75818 /* ExampleClass.swift */,
+				49175D1D1FEF002A00D75818 /* GoogleModel.swift */,
+				49175D1F1FEF018300D75818 /* GoogleViewController.swift */,
+			);
+			path = "rx testing";
+			sourceTree = "<group>";
+		};
 		4939447D1FE093CE00B38A9E = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +189,7 @@
 		499AB7EC1FE450E200A2E97B /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				49175D1A1FEEF9A700D75818 /* rx testing */,
 				49DE33A51FE2EE1500EC0ECC /* SearchRecipeViewController.swift */,
 				49D0BC2F1FE355F600C53D97 /* RecipeDetailViewController.swift */,
 			);
@@ -534,10 +551,13 @@
 				49D0BC301FE355F600C53D97 /* RecipeDetailViewController.swift in Sources */,
 				49DE33A91FE2EF1700EC0ECC /* RecipeCollectionViewCell.swift in Sources */,
 				499AB8321FE478E200A2E97B /* UIImage+extension.swift in Sources */,
+				49175D1E1FEF002A00D75818 /* GoogleModel.swift in Sources */,
 				4939448A1FE093CE00B38A9E /* AppDelegate.swift in Sources */,
 				493944BA1FE097AB00B38A9E /* Recipe.swift in Sources */,
 				49DE33AC1FE2F8FB00EC0ECC /* ColumnLayout.swift in Sources */,
+				49175D1C1FEEFA1600D75818 /* ExampleClass.swift in Sources */,
 				499AB7EB1FE38B6500A2E97B /* Constants.swift in Sources */,
+				49175D201FEF018300D75818 /* GoogleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
