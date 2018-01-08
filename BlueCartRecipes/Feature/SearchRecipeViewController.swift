@@ -30,13 +30,9 @@ internal final class SearchRecipeViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    //TODO: ******Fake data used temporarily - API down
-    private var fakeRecipes = [Recipe]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //getFakeData()
         getData(with: .search)
         setup()
     }
@@ -82,16 +78,6 @@ internal final class SearchRecipeViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    //TODO: ******Fake data used temporarily - API down
-    private func getFakeData() {
-        let foods = ["Chicken", "Pizza", "Madeleines", "Tiramisu", "Lattes", "More Pizza", "Clam Chowder", "Bubble Tea"]
-        let imageUrl = "https://imgix.ranker.com/user_node_img/50019/1000371390/original/another-awesome-einstein-photo-u1?w=650&q=50&fm=jpg&fit=crop&crop=faces"
-        for i in 0..<foods.count {
-            fakeRecipes.append(Recipe(title: foods[i], socialRank: 100.0, imageUrl: imageUrl, recipeId: "id"))
-        }
-        recipes.value = fakeRecipes
     }
     
     // MARK: SETUP
