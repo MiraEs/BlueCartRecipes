@@ -24,7 +24,8 @@ internal final class SearchRecipeViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     //private var recipes = [Recipe]()
     private let recipes: Variable<[Recipe]> = Variable([])
-    private var filteredRecipes = [Recipe]()
+    //private var filteredRecipes = [Recipe]()
+    private let filteredRecipes: Variable<[Recipe]> = Variable([])
     private var searchEntries: [NSManagedObject] = []
     private var recipeSearches: [NSManagedObject] = []
     
@@ -35,6 +36,7 @@ internal final class SearchRecipeViewController: UIViewController {
         
         getData(with: .search)
         setup()
+        //setupObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,10 +44,16 @@ internal final class SearchRecipeViewController: UIViewController {
     }
     
     // MARK: Rx Setup
-    private func setupObserver() {
-        
-    }
-    
+//    private func setupObserver() {
+//        //1
+//        filteredRecipes.asObservable()
+//            .subscribe(onNext: { //2
+//                recipe in
+//                //self.cartButton.title = "\(chocolates.count) \u{1f36b}"
+//            })
+//            .addDisposableTo(disposeBag) //3
+//    }
+//
     // MARK: NETWORK
     
     private func getData(with request: RequestType) {
@@ -69,10 +77,10 @@ internal final class SearchRecipeViewController: UIViewController {
     }
     
     private func getDataFilter(_ searchText: String) {
-        APIRequestManager.manager.getData(imageUrl: nil, query: searchText, id: nil, requestType: .get) { (data) in
+        APIRequestManager.manager.getData(imageUrl: nil, query: searchText, id: nil, requestType: .query) { (data) in
             if let validData = data,
                 let allRecipes = Recipe.getRecipes(from: validData) {
-                self.filteredRecipes = allRecipes
+                self.filteredRecipes.value = allRecipes
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -120,7 +128,7 @@ internal final class SearchRecipeViewController: UIViewController {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        filteredRecipes = recipes.value.filter({(recipe: Recipe) -> Bool in
+        filteredRecipes.value = recipes.value.filter({(recipe: Recipe) -> Bool in
             saveSearchRecipes(recipe)
             return recipe.title.lowercased().contains(searchText.lowercased())
         })
@@ -140,7 +148,7 @@ internal final class SearchRecipeViewController: UIViewController {
         } else {
             // When user hits return, showcase search count.
             if isFiltering() {
-                searchLabel.text = "\(filteredRecipes.count) recipes found"
+                searchLabel.text = "\(filteredRecipes.value.count) recipes found"
             } else {
                 searchLabel.text = "\(recipes.value.count) recipes found"
             }
@@ -211,7 +219,7 @@ internal final class SearchRecipeViewController: UIViewController {
             }
             
             if isFiltering() {
-                dvc.detailRecipe = filteredRecipes[selectedIndexPath.row]
+                dvc.detailRecipe = filteredRecipes.value[selectedIndexPath.row]
             } else {
                 dvc.detailRecipe = recipes.value[selectedIndexPath.row]
             }
@@ -223,8 +231,10 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
-            return filteredRecipes.count
+            print("FILTERING IS TRUE")
+            return filteredRecipes.value.count
         }
+        print("FILTERING IS FALSE")
         return recipes.value.count
     }
     
@@ -234,7 +244,7 @@ extension SearchRecipeViewController: UICollectionViewDelegate, UICollectionView
                                                       for: indexPath) as! RecipeCollectionViewCell
         
         var recipeCell: Recipe
-        recipeCell = isFiltering() ? filteredRecipes[indexPath.row] : recipes.value[indexPath.row]
+        recipeCell = isFiltering() ? filteredRecipes.value[indexPath.row] : recipes.value[indexPath.row]
         cell.data(recipeCell.title, recipeCell.imageUrl)
         
         return cell
@@ -273,6 +283,7 @@ extension SearchRecipeViewController: UISearchResultsUpdating, UISearchControlle
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         getDataFilter(searchController.searchBar.text!)
+        print("SEARCH BAR BUTTON CLICKED")
         saveSearch(searchController.searchBar.text!)
         updateSearchLabel(false)
     }
