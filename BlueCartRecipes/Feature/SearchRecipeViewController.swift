@@ -44,16 +44,8 @@ internal final class SearchRecipeViewController: UIViewController {
     }
     
     // MARK: Rx Setup
-//    private func setupObserver() {
-//        //1
-//        filteredRecipes.asObservable()
-//            .subscribe(onNext: { //2
-//                recipe in
-//                //self.cartButton.title = "\(chocolates.count) \u{1f36b}"
-//            })
-//            .addDisposableTo(disposeBag) //3
-//    }
-//
+
+
     // MARK: NETWORK
     
     private func getData(with request: RequestType) {

@@ -36,7 +36,7 @@ internal final class APIRequestManager {
             guard let queryString = query?.replacingOccurrences(of: " ", with: "%20") else {
                 return
             }
-            path = endPoint + RequestType.get.rawValue + key + "&q=" + queryString
+            path = endPoint + RequestType.search.rawValue + key + "&q=" + queryString
         case .image:
             guard let imageUrl = imageUrl else { return }
             path = imageUrl

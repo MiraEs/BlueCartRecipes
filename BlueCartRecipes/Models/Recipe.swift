@@ -33,7 +33,7 @@ internal final class Recipe {
             }
             
             guard let recipeDict = validData["recipes"] as? [[String:Any]] else {
-                print("error recipe data")
+                print("error recipe data - get recipes")
                 return nil
             }
             
@@ -67,7 +67,7 @@ internal final class Recipe {
             }
             
             guard let recipeDict = validData["recipe"] as? [String:Any] else {
-                print("error recipe data")
+                print("error recipe data - get ingredients")
                 return nil
             }
             
